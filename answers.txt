@@ -1,0 +1,37 @@
+	1. Las Unit Tests como su nombre dice, son para probar unidades funcionales de codigo. 
+		Luego, las pruebas de integracion juntan a las unidades probadas anteiormente y comprueban su
+		funcionamiento en conjunto y por ultimo las pruebas de aceptacion las realiza el cliente al que va dirigido el codigo
+		para comprobar el funcionamiento correcto de todas las partes.
+	
+	2. Utiliza la metodologia Agil y se basa en realizar sprints que duran un determinado tiempo en el que se deben fijar objetivos
+		a realizar. Despues de esto, todos los dias se revisa el progreso de todos en una reunion. Al terminar el sprint se pide
+		retroalimentacion a los clientes.
+
+	3. El TDD funciona primero creando pruebas unitarias en las que una vez que se cumplen, se debe refactorizar el codigo para mejorarlo.
+		Es importante usar esta metofologia porque permite tener certeza del correcto funcionamiento de cada unidad de codigo, permite 
+		supervisar y cuentizar el trabajo realizado para poner objetivos.
+
+	4. El CI/CD permite facilitar el proceso de integracion del codigo que se refiere a la parte de la compilacion del programa, la construccion
+		y el testeo. Despues de esto, la parte de la entrega (delivery) es poder desplegar el programa funcional.
+		Esto, utilizando software de control de versiones y se busca automatizarlo para eficientar en tiempo y recursos.
+	
+	5. Las aplicaciones monoliticas incluyen todas las funciones dentro del mismo programa. Mientras que las aplicaciones basadas
+		en microservicios dividen sus funcionalidades en distintas aplicaciones que no se comunican entre ellas.
+
+	6. Una aplicacion de horarios de clase en la que solo se hace un query para ver las clases y los horarios de un alumno. Utilizando 
+		solo un fragmento de codigo que realiza la busqueda de datos y no un servidor comp[leto.
+	
+	7. Es la integracion entre el Desarrollo y las Operaciones con el objetivo de agilizar el proceso de vida de software.
+
+	8. Raspberry .- Sus desarrollos buscan llevar la programacion y la computacion a un bajo costo a comunidades que no se pueden permitir la compra de
+			equipo de computo convencional.
+
+		OBS .- Es un programa para realizar stream de video. Debido a su naturaleza, hay muchos plugins y modificaciones que se integran en poco tiempo,
+			apropiado para el mundo cambiante del streaming social.
+
+		Ethereum .- La red de Ethereum es la base para muchas de las criptomonedas y contratos inteligente. Aunque la red principal tiene mucho gasto 
+			energetico, Ethereum 2.0 y muchos forks de este ya se adelantaron al modelo PoS que ocupa menos energia y lo vuelve perfecto para los tiempos actuales.
+	
+	9. -
+
+	
