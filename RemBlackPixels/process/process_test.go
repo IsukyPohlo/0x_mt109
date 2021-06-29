@@ -134,15 +134,15 @@ func TestProcess(t *testing.T) {
 		{0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
 		{0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1},
 		{0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1},
-		{0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0},
 		{0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0},
 	}
 
 	completeExp := [][]uint8{
-		{1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0},
-		{1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1},
-		{1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1},
-		{0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+		{0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1},
+		{0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1},
+		{0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 		{0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0},
 	}
 
@@ -151,6 +151,18 @@ func TestProcess(t *testing.T) {
 	fmt.Println(" Entrada :")
 
 	for _, row := range completeIn {
+		for _, pixel := range row {
+			fmt.Print(pixel, " ")
+		}
+		fmt.Println()
+	}
+
+	//Mostrar salida
+
+	fmt.Println()
+	fmt.Println("Esperado")
+
+	for _, row := range completeExp {
 		for _, pixel := range row {
 			fmt.Print(pixel, " ")
 		}
@@ -169,29 +181,18 @@ func TestProcess(t *testing.T) {
 		fmt.Println()
 	}
 
-	for i, row := range completeOut {
-		for j, pixel := range row {
-			if pixel != completeExp[i][j] {
-				t.Errorf("error en la generacion en: %d-%d", i, j)
+	fmt.Println("comp")
+
+	for i := 0; i < len(completeOut); i++ {
+		for j := 0; j < len(completeOut[0]); j++ {
+			//fmt.Print(completeOut[i][j])
+			//fmt.Print(completeExp[i][j])
+			if completeOut[i][j] != completeExp[i][j] {
+				t.Errorf("Resultado inesperado en %d,%d", i, j)
 			}
 		}
 	}
+
+	fmt.Println()
+
 }
-
-/*
-
- Entrada :
-0 0 0 1 1 0 0 0 0 1 0 0 0
-0 1 1 1 0 0 1 0 1 0 1 1 1
-0 1 1 1 1 0 1 1 1 1 1 0 1
-0 1 1 1 0 0 0 0 0 0 0 0 0
-0 0 1 0 1 0 0 0 1 1 0 0 0
-
-Salida
-0 0 0 1 1 0 0 0 0 1 0 0 0
-0 0 0 1 0 0 0 0 1 0 1 1 1
-0 0 0 1 1 0 0 0 1 1 1 0 1
-0 0 1 1 0 0 0 0 0 0 0 0 0
-0 0 1 0 1 0 0 0 1 1 0 0 0
-
-*/

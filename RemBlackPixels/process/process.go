@@ -114,21 +114,21 @@ func cleanImage(i *Image) {
 	(*i).length = len((*i).pixelImage[0])
 
 	//Borde Arriba:
-	fmt.Println("ARRIBA")
+	//fmt.Println("ARRIBA")
 
 	for oX = 1; oX < (*i).length-1; oX++ {
 
 		w.curr.Y = 0
 		w.curr.X = oX
 
-		fmt.Println("(Y:", w.curr.Y, "X: ", w.curr.X, ")")
+		//fmt.Println("(Y:", w.curr.Y, "X: ", w.curr.X, ")")
 
 		searchColl(w, i)
 
 	}
 
 	//Borde Abajo:
-	fmt.Println("ABAJO")
+	//fmt.Println("ABAJO")
 	for oX = 1; oX < (*i).length-1; oX++ {
 
 		w.curr.X = oX
@@ -142,7 +142,7 @@ func cleanImage(i *Image) {
 	}
 
 	//Borde Izquierda
-	fmt.Println("IZQ")
+	//fmt.Println("IZQ")
 
 	for oY = 1; oY < (*i).width-1; oY++ {
 
@@ -157,7 +157,7 @@ func cleanImage(i *Image) {
 	}
 
 	//Borde Derecha
-	fmt.Println("DER")
+	//fmt.Println("DER")
 	for oY = 1; oY < (*i).width-1; oY++ {
 
 		w.curr.Y = oY
@@ -184,29 +184,20 @@ func cleanImage(i *Image) {
 // - Coincidencias? repetir ciclo en pixel de colision
 func searchColl(w WayStrt, i *Image) {
 
-	fmt.Println()
-	fmt.Println("[Y:", w.curr.Y, ",X:", w.curr.X, "]", (*i).processed[w.curr.Y][w.curr.X], "C: ", (*i).pixelImage[w.curr.Y][w.curr.X])
+	var nw WayStrt
 
-	fmt.Println()
+	nw.curr.X = 0
+	nw.curr.Y = 0
 
-	for _, row := range (*i).processed {
-		for _, pixel := range row {
-			if pixel {
-				fmt.Print(" 1")
-			} else {
-				fmt.Print(" 0")
-			}
-		}
-		fmt.Println()
-	}
+	//fmt.Println()
+	//fmt.Println("[Y:", w.curr.Y, ",X:", w.curr.X, "]", (*i).processed[w.curr.Y][w.curr.X], "C: ", (*i).pixelImage[w.curr.Y][w.curr.X])
+	//fmt.Println()
 
 	//no esta procesado?
 	if !(*i).processed[w.curr.Y][w.curr.X] {
 
 		//Es negro?
 		if (*i).pixelImage[w.curr.Y][w.curr.X] {
-			fmt.Println("I was black? ", (*i).pixelImage[w.curr.Y][w.curr.X])
-
 			//Calcula3
 			(*i).processed[w.curr.Y][w.curr.X] = true
 
@@ -215,7 +206,7 @@ func searchColl(w WayStrt, i *Image) {
 			//PRIMER PASO
 
 			if w.curr.Y == 0 { //arriba
-				fmt.Println("PRIMER PASO ARRIBA")
+				//fmt.Println("PRIMER PASO ARRIBA")
 				w.curr.Y++
 				searchColl(w, i)
 			} else if w.curr.Y == (*i).width-1 { //abajo
@@ -234,33 +225,37 @@ func searchColl(w WayStrt, i *Image) {
 				//Cap derecha
 				if w.curr.X < (*i).length-1 && (*i).pixelImage[w.curr.Y][w.curr.X+1] && !(*i).processed[w.curr.Y][w.curr.X+1] {
 					//Hacia derecha?
-					w.curr.X++
-					fmt.Println("der", w.curr.Y, w.curr.X)
-					searchColl(w, i)
+					nw.curr.X = w.curr.X + 1
+					nw.curr.Y = w.curr.Y
+					//fmt.Println("der", nw.curr.Y, nw.curr.X)
+					searchColl(nw, i)
 				}
 
 				//Cap izquierda
 				if w.curr.X > 1 && (*i).pixelImage[w.curr.Y][w.curr.X-1] && !(*i).processed[w.curr.Y][w.curr.X-1] {
 					//Hacia izquierda?
-					w.curr.X--
-					fmt.Println("izq", w.curr.Y, w.curr.X)
-					searchColl(w, i)
+					nw.curr.X = w.curr.X - 1
+					nw.curr.Y = w.curr.Y
+					//fmt.Println("izq", nw.curr.Y, nw.curr.X)
+					searchColl(nw, i)
 				}
 
 				//Cap abajo
 				if w.curr.Y < (*i).width-1 && (*i).pixelImage[w.curr.Y+1][w.curr.X] && !(*i).processed[w.curr.Y+1][w.curr.X] {
 
-					w.curr.Y++
-					fmt.Println("aba ", w.curr.Y, w.curr.X)
-					searchColl(w, i)
+					nw.curr.X = w.curr.X
+					nw.curr.Y = w.curr.Y + 1
+					//fmt.Println("aba ", nw.curr.Y, nw.curr.X)
+					searchColl(nw, i)
 
 				}
 				//Cap arriba
 				if w.curr.Y > 1 && (*i).pixelImage[w.curr.Y-1][w.curr.X] && !(*i).processed[w.curr.Y-1][w.curr.X] {
 					//Hacia arriba?
-					w.curr.Y--
-					fmt.Println("arr", w.curr.Y, w.curr.X)
-					searchColl(w, i)
+					nw.curr.X = w.curr.X
+					nw.curr.Y = w.curr.Y - 1
+					//fmt.Println("arr", nw.curr.Y, nw.curr.X)
+					searchColl(nw, i)
 
 				}
 
@@ -274,7 +269,7 @@ func searchColl(w WayStrt, i *Image) {
 			//no es negro, pero si es orilla se marca igual
 
 			if w.curr.Y == 0 || w.curr.Y == (*i).width-1 || w.curr.X == 0 || w.curr.X == (*i).length-1 {
-				fmt.Println("Orilla ")
+				//fmt.Println("Orilla ")
 				(*i).processed[w.curr.Y][w.curr.X] = true
 			}
 			//se acaba
