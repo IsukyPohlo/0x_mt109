@@ -1,0 +1,74 @@
+
+<div [ngClass]="item.status == 'completed'?'border-success ':'border-primary'" class= "card mx-3 my-2 p-3 border-large border-top-0 border-right-0 border-bottom-0" *ngFor="let item of data">
+
+        <div class="row">
+            <div class="col-sm-1">
+                <p class = "font-weight-light text-muted">
+                    Ruta
+                </p>
+                <p class = "font-weight-bold">
+                    {{item.id}}
+                </p>
+              
+    
+            </div>
+            <div class="col-sm-1">
+                <p class = "font-weight-light text-muted">
+                    Conductor
+                </p>
+                <p class = "font-weight-bold">
+                    {{item.driver_name}}
+                </p>
+            </div>
+            <div class="col-sm-3">
+                <p class = "font-weight-light text-muted">
+                    Creada
+                </p>
+                <p class = "font-weight-bold">
+                    {{item.created_at}}
+                </p>
+            </div>
+            <div class="col-sm-1">
+
+                <p class = "font-weight-light text-muted">
+                    Inicio
+                </p>
+                <p class = "font-weight-bold">
+                    -
+                </p>
+
+            </div>
+            <div class="col-sm-3">
+                <p class = "font-weight-light text-muted">
+                    Termino
+                </p>
+                <p class = "font-weight-bold">
+                    {{item.completed_at}}
+                </p>
+            </div>
+            <div class="col-sm-1">
+
+                <p class = "font-weight-light text-secondary">
+                    Entregas
+                </p>
+                <p class = "font-weight-bold">
+                    {{item.deliveries}}
+                </p>
+
+            </div>
+            <div class="col-sm-2 my-auto">
+                <span [ngClass]="item.status == 'completed'?'badge-success ':'badge-primary'" class = "badge badge-pill text-med float-right">
+                    <span *ngIf="item.status == 'pending'">
+                        Pendiente
+                    </span>
+                    <span *ngIf="item.status == 'onroute'">
+                        En ruta
+                    </span>
+                    <span *ngIf="item.status == 'completed'">
+                        Completada
+                    </span>
+                </span>
+            </div>
+        </div> 
+</div>
+

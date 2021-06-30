@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+.text-large {
+    font-size: 150%;
+}
+
+.text-med {
+    font-size: 125%;
+}
+
+.border-large {
+    border-width: 5px !important;
+}
+
+.bg-gray {
+    background-color: gainsboro;
+}
